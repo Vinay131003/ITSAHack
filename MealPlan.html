@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Meal Plan Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to External CSS -->
+    <style>
+        /* Custom styles for form beautification */
+        body {
+            background-image: url("https://img.freepik.com/free-photo/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner_1258-63452.jpg?w=1380&t=st=1727542161~exp=1727542761~hmac=0b6325b8bdcec793c91945beb176ade18eb6a24b334cb4292620e5cd45384fc6");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .form-title {
+            color: #0056b3;
+            font-weight: bold;
+        }
+
+        .form-label {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 8px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            border-color: #0056b3;
+        }
+
+        .btn-primary {
+            background-color: #0056b3;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .btn-primary:hover {
+            background-color: #004494;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5 p-4 form-container">
+        <h2 class="mb-4 text-center form-title">Personalized Meal Plan Form</h2>
+        <form id="mealPlanForm" action="save_data.php" method="POST">
+
+            <!-- Basic Information Section -->
+            <div class="mb-5">
+                <h4 class="form-title">Basic Information</h4>
+                <div class="mb-4">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="weight" class="form-label">Weight (kg)</label>
+                        <input type="number" class="form-control" id="weight" name="weight" placeholder="Enter your weight" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="height" class="form-label">Height (cm)</label>
+                        <input type="number" class="form-control" id="height" name="height" placeholder="Enter your height" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select class="form-select" id="gender" name="gender" required>
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dietary Preferences Section -->
+            <div class="mb-5">
+                <h4 class="form-title">Dietary Restrictions and Food Habits</h4>
+                <div class="mb-3">
+                    <label class="form-label">Dietary Restrictions</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="vegan" name="dietary_restrictions" value="vegan">
+                        <label class="form-check-label" for="vegan">Vegan</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="vegetarian" name="dietary_restrictions" value="vegetarian">
+                        <label class="form-check-label" for="vegetarian">Vegetarian</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gluten_free" name="dietary_restrictions" value="gluten_free">
+                        <label class="form-check-label" for="gluten_free">Gluten-Free</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="dairy_free" name="dietary_restrictions" value="dairy_free">
+                        <label class="form-check-label" for="dairy_free">Dairy-Free</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="nut_allergy" name="dietary_restrictions" value="nut_allergy">
+                        <label class="form-check-label" for="nut_allergy">Nut Allergy</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="none" name="dietary_restrictions" value="none">
+                        <label class="form-check-label" for="none">None</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Food Habits</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="high_protein" name="food_habits" value="high_protein">
+                        <label class="form-check-label" for="high_protein">High Protein</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="low_carb" name="food_habits" value="low_carb">
+                        <label class="form-check-label" for="low_carb">Low Carb</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="paleo" name="food_habits" value="paleo">
+                        <label class="form-check-label" for="paleo">Paleo</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Goals Section -->
+            <div class="mb-5">
+                <h4 class="form-title">Health Goals</h4>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="weight_loss" name="health_goals" value="weight_loss">
+                        <label class="form-check-label" for="weight_loss">Weight Loss</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="muscle_gain" name="health_goals" value="muscle_gain">
+                        <label class="form-check-label" for="muscle_gain">Muscle Gain</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="improve_stamina" name="health_goals" value="improve_stamina">
+                        <label class="form-check-label" for="improve_stamina">Improve Stamina</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="maintain_weight" name="health_goals" value="maintain_weight">
+                        <label class="form-check-label" for="maintain_weight">Maintain Weight</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical History Section -->
+            <div class="mb-5">
+                <h4 class="form-title">Medical History</h4>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="diabetes" name="medical_history" value="diabetes">
+                        <label class="form-check-label" for="diabetes">Diabetes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="high_bp" name="medical_history" value="high_bp">
+                        <label class="form-check-label" for="high_bp">High Blood Pressure</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="heart_disease" name="medical_history" value="heart_disease">
+                        <label class="form-check-label" for="heart_disease">Heart Disease</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="allergies" name="medical_history" value="allergies">
+                        <label class="form-check-label" for="allergies">Food Allergies</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Submit Meal Plan Preferences</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+
+    <body>
+    <div class="container mt-5">
+        <center><h2>Featured Recipes</h2></center>
+        <div class="row" id="mealPlanContainer">
+            <!-- Results will be dynamically inserted here -->
+        </div>
+    </div>
+    
+    <script>
+        const apiKey = '6d1f31e6113c4985a26b34ecbfd91c3c'; // Replace with your Spoonacular API key
+        const mealPlanForm = document.getElementById('mealPlanForm');
+        const mealPlanContainer = document.getElementById('mealPlanContainer');
+    
+        // Handle the form submission
+        mealPlanForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form from submitting normally
+    
+            // Collecting basic information
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+            const gender = document.getElementById('gender').value;
+    
+            // Collecting dietary preferences
+            const dietPreferences = Array.from(document.querySelectorAll('input[name="dietary_restrictions"]:checked')).map(el => el.value);
+    
+            // Generate meal plan
+            generateMealPlan(name, age, weight, height, gender, dietPreferences);
+        });
+    
+        async function generateMealPlan(name, age, weight, height, gender, dietPreferences) {
+            // Example meal plan logic (mockup)
+            const meals = [
+                { meal: "Breakfast", type: "breakfast", recipes: [] },
+                { meal: "Lunch", type: "lunch", recipes: [] },
+                { meal: "Dinner", type: "dinner", recipes: [] }
+            ];
+    
+            for (let meal of meals) {
+                const recipes = await fetchRecipes(meal.type, dietPreferences);
+                meal.recipes = recipes;
+            }
+    
+            displayMealPlan(meals);
+        }
+    
+        async function fetchRecipes(mealType, dietPreferences) {
+            const dietaryParams = dietPreferences.length > 0 ? `&diet=${dietPreferences.join(',')}` : '';
+            const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?type=${mealType}&number=3&apiKey=${apiKey}${dietaryParams}`);
+            const data = await response.json();
+            return data.results || [];
+        }
+    
+        function displayMealPlan(meals) {
+            mealPlanContainer.innerHTML = '';
+            meals.forEach(meal => {
+                const mealCol = document.createElement('div');
+                mealCol.classList.add('col-md-4', 'mb-4');
+                
+                let mealHTML = `<div class="meal-item card h-100">
+                                    <div class="card-body">
+                                        <h4 class="card-title">${meal.meal}</h4>`;
+    
+                meal.recipes.forEach(recipe => {
+                    mealHTML += `
+                        <div class="recipe-item">
+                            <h5 class="card-title">${recipe.title}</h5>
+                            <img src="${recipe.image}" alt="${recipe.title}" class="img-fluid mb-2">
+                            <p><a href="https://spoonacular.com/recipes/${recipe.title}-${recipe.id}" target="_blank" class="btn btn-primary">View Recipe</a></p>
+                        </div>`;
+                });
+    
+                mealHTML += `</div></div>`;
+                mealCol.innerHTML = mealHTML;
+                mealPlanContainer.appendChild(mealCol);
+            });
+        }
+    </script>
+    
+
+</body>
+
+</html>
