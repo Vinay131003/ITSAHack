@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>cheatday</title>
+    <script>
+        // Function to handle search and fetch data from Spoonacular API<script>
+    // Function to handle search and fetch data from Spoonacular API
+    async function searchRecipe(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get user input from the search box
+        const searchQuery = document.querySelector('input[type="text"]').value;
+
+        // API key and URL
+        const apiKey = '6d1f31e6113c4985a26b34ecbfd91c3c'; // Replace with your Spoonacular API key
+        const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=${apiKey}`;
+
+        try {
+            // Make API request
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+
+            // Get the recipe container element
+            const recipeContainer = document.querySelector('.recipe-container');
+
+            // Clear the existing recipes
+            recipeContainer.innerHTML = '';
+
+            // Loop through the search results and display the recipes
+            if (data.results.length > 0) {
+                data.results.forEach(recipe => {
+                    const recipeItem = document.createElement('div');
+                    recipeItem.classList.add('recipe-item');
+
+                    recipeItem.innerHTML = `
+                        <img src="${recipe.image}" alt="${recipe.title}">
+                        <h3>${recipe.title}</h3>
+                        <a class="view-recipe" href="https://spoonacular.com/recipes/${recipe.title}-${recipe.id}" target="_blank">View Recipe</a>
+                    `;
+
+                    recipeContainer.appendChild(recipeItem);
+                });
+            } else {
+                recipeContainer.innerHTML = '<p>No recipes found.</p>';
+            }
+
+        } catch (error) {
+            console.error('Error fetching recipes:', error);
+        }
+    }
+
+    // Attach the searchRecipe function to the form's submit event
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('.search-box').addEventListener('submit', searchRecipe);
+    });
+</script>
+
+    </script>
+    
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="logo">
+                <img src="images/logob.png" alt="Bitebalance logo">
+                BiteBalance</h1>
+            <nav>
+                <ul class="nav-list">
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Recipe</li>
+                    <li>Your Meals</li>
+                    <li>Account</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ..............Search SECTION.............-->
+    <section class="main">
+        <div class="main-section">
+
+            <h2> Welcome to our recipe collection!</h2>
+            <p> Tasty recipes for the perfect cheat meal</p>
+            <form action="#" class="search-box">
+                <input type="text" placeholder="Search Recipe " required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+    </section>
+
+    <!-- ..............RECIPE SECTION.............-->
+    <section class="recipes">
+        <h2>Featured Recipes</h2>
+
+        <div class="recipe-container">
+            <div class="recipe-item">
+                <img src="images/Breakfast O’clock.jpeg" alt="Green Apple Smoothie with Chia seeds">
+                <h3>Green Apple Smoothie with Chia Seeds</h3>
+                <p>Healthiest way to start a morning.</p>
+                <!-- <a href="#">View recipe</a> -->
+            </div>
+            <div class="recipe-item">
+                <img src="images/Easy Tomato Avocado Salad.jpeg" alt=" ">
+                <h3>Avocado Salad</h3>
+                <p>A dish full of nutrients</p>
+                <!-- <a href="#">View recipe</a> -->
+            </div>
+            <div class="recipe-item">
+                <img src="images/Garlic Butter Chicken Bites • Olive & Mango.jpeg" alt="Green Apple Smoothie with Chia seeds">
+                <h3>Grilled Garlic Chicken Bites</h3>
+                <p>Rich source of Protein.</p>
+                <!-- <a href="#">View recipe</a> -->
+            </div>
+            <div class="recipe-item">
+                <img src="images/Paneer Biryani Recipe -  Veg Paneer Dum Biryani Recipe - khaddoroshik.jpeg" alt="Green Apple Smoothie with Chia seeds">
+                <h3>Paneer Rice Bowl</h3>
+                <p>Paneer is high in calcium, Rice contains folic acid.</p>
+                <!-- <a href="#">View recipe</a> -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <p>&copy; 2024 BiteBalance. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
